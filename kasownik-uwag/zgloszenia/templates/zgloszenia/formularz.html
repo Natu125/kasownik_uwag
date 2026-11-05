@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kasownik Uwag — zgłoszenie pasażera</title>
+    <style>
+        body { max-width: 36rem; margin: 2rem auto; padding: 0 1rem; font: 1rem/1.5 system-ui; }
+        label { display: block; font-weight: bold; }
+        input, textarea { width: 100%; box-sizing: border-box; padding: .6rem; font: inherit; }
+        button { padding: .6rem 1rem; font: inherit; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Kasownik Uwag</h1>
+
+        {% for komunikat in messages %}
+            <p role="status">{{ komunikat }}</p>
+        {% endfor %}
+
+        <p>Podaj adres e-mail i opisz, co wydarzyło się podczas podróży.</p>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ formularz.as_p }}
+            <button type="submit">Wyślij zgłoszenie</button>
+        </form>
+    </main>
+</body>
+</html>
